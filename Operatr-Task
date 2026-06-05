@@ -1,0 +1,99 @@
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography.X509Certificates;
+using static System.Net.WebRequestMethods;
+
+namespace Yusuf_C_
+{
+       class Hesab{
+        static int Add(int A, int B)
+        {
+            return A + B;
+        }
+        static int Subt(int A, int B)
+        {
+            return A - B;
+        }
+        static int Mult(int A, int B)
+        {
+            return A * B;
+        }
+
+        static int Div(int A, int B)
+        {
+            if (B == 0)
+            {
+                Console.WriteLine("Error: 0 bolmek olmiur !!!");
+                return 0;
+            }
+            return A / B;
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("Enter  Number(1): ");
+            int Number1 = Convert.ToInt32( Console.ReadLine());
+            Console.Write("Enter  Number(2): ");
+            int Number2 = Convert.ToInt32(Console.ReadLine());
+            Console.Write(@"1.Bolme
+                            2.Vurma
+                            3.Toplama
+                            4.Cixma
+                            Secim: ");
+            int secim = Convert.ToInt32(Console.ReadLine());
+            switch (secim)
+            {
+                case 3:
+                    Console.WriteLine("Netice: " + Add(Number1, Number2));
+                    break;
+
+                case 2:
+                    Console.WriteLine("Netice: " + Mult(Number1, Number2));
+                    break;
+
+                case 1:
+                    Console.WriteLine("Netice: " + Div(Number1, Number2));
+                    break;
+
+                case 4:
+                    Console.WriteLine("Netice: " + Subt(Number1 , Number2));
+                    break;
+
+                default:
+                    Console.WriteLine("Yanlis secim!");
+                    break;
+            }
+            //Calculator
+            //Add
+            //Mult
+            //Div
+            //Subt
+            //funksiyalari olsun
+            //ve switch istifade ederek
+            //kalkulyator yazmaq lazimdir.
+            //Ref, Out, In keyword arasdirilsin.Kod numunesi yazilsin
+            //-----------------------------
+            //Ref:
+            /*
+             Ref ele biz bunu C++ da da demisdi mellimm sizde dediz dmeeli biz Value ile isleyende copy gonderirlirde yani biz harasa deyer gonderende onun copysi gedir indi bu refdeki o ise
+            Yarayirki Copy ykox pramoyuna Value olaraq oxunu gonderir indi bu C++ da olmurdu yada mellimm gostermemisdi de bizde deyilen sadece Value gonderilende copy gedri vessalam 
+            Indi bu refi hem gonderdiyimiz hemdeki qebul elediyimiz yerde yaziriq ve dediyim kimi deyisdirende real Value deyisir
+             */
+            //Out:
+            /*
+                Outda hardasa Ref ile eyno islevsellik gorur demeli Outda ise evvelceden deyer vermek lazim deyildide Refde evvel deyer verib sora gonderirrik ki Value si getsin burda ise 
+                Gonderirik Refdeki kimi hme gonderdiyimiz yerde hemdeki aldiqmiz yerde Out yaziriq ve orda deyer veririk 
+             */
+            //In :
+            /*
+                In ise sadece Cout ucundur buna oxsari C++ da da var idi demeli in ile gonderdiyimiz deyerler sadece return ucundurde sadece ekrana cixarta bilesen ne deyisdir nedeki 
+                deyer vere bilersen sadece return
+             */
+            
+            
+            
+            /*
+                kisacasi desem Ref Valueni deyisdirmek ucun Out Value nu vermek ucun In ise sadece Cout elemek ucun 
+             */
+        }
+    }
+}
