@@ -1,0 +1,101 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string[,] Quiz = new string[10, 5]//suallarin hamisini ai a hazirlatdim !!! 
+        {
+            { "Azərbaycanın paytaxtı haradır?", "Baki", "Gence", "Naxcivan", "Sumqayit" },
+            { "C# hansı şirkət tərəfindən yaradılıb?", "Microsoft", "Apple", "Google", "Oracle" },
+            { "Suyun qaynama dərəcəsi neçədir?", "100", "50", "0", "120" },
+            { "Dünyanın ən böyük okeanı hansıdır?", "Sakit", "Atlantik", "Hind", "Simal Buzlu" },
+            { "Bir ildə neçə fəsil var?", "4", "12", "365", "24" },
+            { "İnsanda neçə göz var?", "2", "1", "3", "4" },
+            { "Şahmatda ən güclü fiqur hansıdır?", "Vezir", "Sah", "At", "Fil" },
+            { "Kompüterin beyini harasıdır?", "CPU", "RAM", "Monitor", "SSD" },
+            { "Hansı proqramlaşdırma dilidir?", "C#", "HTML", "CSS", "HTTP" },
+            { "Limonun dadı necə olur?", "Turs", "Sirin", "Aci", "Soran" }
+        };
+        int Total_Point = 0;
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine($"\nQuestion {i + 1}. {Quiz[i,0]}");
+            string Canswer = Quiz[i,1];
+            string[] Answer = new string[4];
+            Answer[0] = Quiz[i, 1];
+            Answer[1] = Quiz[i, 2];
+            Answer[2] = Quiz[i, 3];
+            Answer[3] = Quiz[i, 4];
+            for (int j = Answer.Length - 1; j > 0; j--)
+            {
+                int k = rand.Next(0, j + 1);
+                string K = Answer[j];
+                Answer[j] = Answer[k];
+                Answer[k] = K;
+            }
+            int Choise_Index = 0;
+            bool Choise_2 = false;
+            int startLine = Console.CursorTop;
+            while (!Choise_2)
+            {
+                Console.SetCursorPosition(0, startLine);
+                for (int v = 0; v < 4; v++)
+                {
+                    char herf = (char)('a' + v);
+                    if (v == Choise_Index)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"-> {herf}) {Answer[v]}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  {herf}) {Answer[v]} ");
+                    }
+                }
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    Choise_Index--;
+                    if (Choise_Index < 0) Choise_Index = 3;
+                }
+                else if (keyInfo.Key == ConsoleKey.DownArrow)
+                {
+                    Choise_Index++;
+                    if (Choise_Index > 3) Choise_Index = 0;
+                }
+                else if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Choise_2 = true;
+                }
+            }
+            string istifadeciCavabi = Answer[Choise_Index];
+            if (istifadeciCavabi == Canswer)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Correct Answer Broooooo..");
+                Total_Point += 10;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Wrong answer bro !!!");
+                Console.WriteLine($"Corretc Answer is: {Canswer}");
+
+                Total_Point -= 10;
+                if (Total_Point < 0)
+                {
+                    Total_Point = 0;
+                }
+            }
+            Console.ResetColor();
+            Console.WriteLine($"Total Point: {Total_Point}");
+            Console.WriteLine("---------------------------------------------");
+        }
+        Console.WriteLine($"Quiz game is over You Balance: {Total_Point} $");
+        Console.ReadLine();
+    }
+}
