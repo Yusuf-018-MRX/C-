@@ -1,0 +1,46 @@
+using System;
+
+class Student
+{
+    public const string Uniname = "Unec Uni";
+    public readonly string studentid;
+    public Student(string id)
+    {
+        studentid = id;
+    }
+    public void Show()
+    {
+        Console.WriteLine("Universitet: " + Uniname);
+        Console.WriteLine("ID: " + studentid);
+    }
+}
+class Program
+{
+    //Demeli kodumuzu basa salaq da meselen kimese diplom yadaki Uniname yada mekteb haqqinda neyse verilen yada ele pramoyuna Step it haqqinda verilende yuxarida Step it yada UNec uni kimi yzilir soradaki istidfadeci 
+    //Haqqinda melumat meselen men burda studenid yaratdim bu mentiqlidir cunki her sagirdin ozune mexsus idsi omalidir ama mektebleri eyni olmaldirida burda ona gore mekteb adini yada korditatini ola bilerdi Const verdim
+    //ama studentid her defesinde basqa adam ucun ayri ayri olmaldir const versek hami bir birinin hesabina gire bilerdide indi burda readonly istifade eledim 
+   //mence readonly cox daha yaxsi ve mentiqlidi 
+    static void Main()
+    {
+        Student c = new Student("Kamran1234");
+        Student a = new Student("Yusuf1234");
+        c.Show();
+        Console.WriteLine(" ");//endlda yani
+        a.Show();
+        // Demeli Const ve Readonly haqqinda ; 
+        /*
+         Const: 
+        Const deyisdirilmez demekdir C++ Dada burda olduqu kimi const deyisenlere deyerleri yaranda vermek lazimdir (C++ Birde Isalayz list idi deyilisi ele vermek olurdu)
+        Const oncelikle Compiler timeda mueyyen ollunmalidir bunun de bize menfisi istifadeci run timeda mueyyen ede bilmir ve const deyisenlere basqa bir deyer menimsetmek istesek error verejek
+        Const deyisenlerin menfi xusiyyetide ele mehz istifadeciden gelen melumati vere bilmemeyimizdir buda problem yarada bilir
+        Burda bize komeye Readonly gelir Readonly deki harda Consta oxsar xusisiyyetleride var ama daha yaxsi oglandi bu 
+        Read ony keywordunu typden evvele yaziriq ve yaranir 
+        Readonly Constdan ferli cehetlerinden biri compiler time yox runtime da ise dusmesidir yani deyer vere bimeyimizdir buda istifadeciden melumati alib menimsede bilmeyimiz demekdir 
+        Readonly Deyeri ya yaradilanda vermekdir yada ki Constutructur icerisinde vere bilerik buda yaxsi cehetidir 
+        Consta oxsuyur basqa yerde deyisdirilmez olur sadece Consturucdur icinde deyisdire bilersende Constuructur bitdise deyismek olmayajaq 
+        */
+
+
+
+    }
+}
