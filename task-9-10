@@ -1,0 +1,332 @@
+using System;
+namespace Yusuf_First
+{
+    public class Pet
+    {
+        public PetShop Register()
+        {
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("Welcome To Pet Shop Bro Bluupppp Bluuupp");
+            Console.WriteLine("Choose the pet please");
+            Console.WriteLine("1.Cat\n2.Dog\n3.Fish\n4.Bird");
+            Console.Write("Choice: ");
+            int secim2 = int.Parse(Console.ReadLine());
+            if (secim2 == 1)
+            {
+                Console.WriteLine("Enter Cat nickname");
+                Console.Write("Nickname: ");
+                string nickname = Console.ReadLine();
+                return new Cat(nickname);
+            }
+            else if (secim2 == 2)
+            {
+                Console.WriteLine("Enter Dog nickname");
+                Console.Write("Nickname: ");
+                string nickname = Console.ReadLine();
+                return new Dog(nickname);
+            }
+            else if (secim2 == 3)
+            {
+                Console.WriteLine("Enter Fish nickname");
+                Console.Write("Nickname: ");
+                string nickname = Console.ReadLine();
+                return new Fish(nickname);
+            }
+            else if (secim2 == 4)
+            {
+                Console.WriteLine("Enter Bird nickname");
+                Console.Write("Nickname: ");
+                string nickname = Console.ReadLine();
+                return new Bird(nickname);
+            }
+            return null;//Vallah Yalan danismayim errorlarim oldu d ele mehz bu qisimde mende ai dan sorusdum ki men koram ya neyse sehvlik var dediki sen hecne return elemirsen axirina return null yazmalisan mende yazdim bu setir ai dir 
+        }
+    }
+    public abstract class PetShop
+    {
+        protected double Energy;
+        protected double Acliq;
+        protected string Nickname;
+        protected int Age;
+        protected string Gender;
+        protected double Price;
+        protected int Meal_pr;
+        public static int total_Meal_pr = 0;
+        public static double TotalPrice = 0;
+        public abstract void Eat();
+        public abstract void Sleep();
+        public abstract void Play();
+    }
+    public class Cat : PetShop
+    {
+        public Cat(string Nickname)
+        {
+            this.Nickname = Nickname;
+            Energy = 50;
+            Acliq = 50;
+            Age = 99;
+            Gender = "Male";
+            Price = 999;
+        }
+        public override void Eat()
+        {
+            if (Acliq <= 70)
+            {
+                Console.WriteLine($"{Nickname} is Eating");
+                Acliq = 100;
+                Energy -= 10;//yemek yeyende adamain yuxusu gelirde dedim mence bele olmalidir ama artada biler deye + da yazdim
+                //Energy += 10;
+                Meal_pr++;
+                total_Meal_pr++;
+                Age++;
+                Price += 20;
+                TotalPrice += 20;
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Ac deyil ayqa");
+            }
+        }
+        public override void Sleep()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} yorğun deyildana");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Sleeping");
+                Energy = 100;//day dededim yatanda tam yatarda ona giorem 100 eledim
+            }
+        }
+        public override void Play()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} Playing");
+                Energy -= 10;
+                Acliq -= 10;
+
+                if (Energy <= 0)
+                {
+                    Console.WriteLine($"{Nickname} need sleep");
+                    Sleep();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} yatmalıdır.");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+        }
+    }
+    public class Dog : PetShop
+    {
+        public Dog(string Nickname)
+        {
+            this.Nickname = Nickname;
+            Energy = 50;
+            Acliq = 50;
+            Age = 99;
+            Gender = "Male";
+            Price = 999;
+        }
+        public override void Eat()
+        {
+            if (Acliq <= 70)
+            {
+                Console.WriteLine($"{Nickname} is Eating");
+                Acliq = 100;
+                Energy -= 10;//yemek yeyende adamain yuxusu gelirde dedim mence bele olmalidir ama artada biler deye + da yazdim
+                //Energy += 10;
+                Meal_pr++;
+                total_Meal_pr++;
+                Age++;
+                Price += 20;
+                TotalPrice += 20;
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Ac deyil ayqa");
+            }
+        }
+        public override void Sleep()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} yorğun deyildana");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Sleeping");
+                Energy = 100;//day dededim yatanda tam yatarda ona giorem 100 eledim
+            }
+        }
+        public override void Play()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} Playing");
+                Energy -= 10;
+                Acliq -= 10;
+
+                if (Energy <= 0)
+                {
+                    Console.WriteLine($"{Nickname} need sleep");
+                    Sleep();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} yatmalıdır.");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+        }
+    }
+    public class Fish : PetShop
+    {
+        public Fish(string Nickname)
+        {
+            this.Nickname = Nickname;
+            Energy = 50;
+            Acliq = 50;
+            Age = 99;
+            Gender = "Male";
+            Price = 999;
+        }
+        public override void Eat()
+        {
+            if (Acliq <= 70)
+            {
+                Console.WriteLine($"{Nickname} is Eating");
+                Acliq = 100;
+                Energy -= 10;//yemek yeyende adamain yuxusu gelirde dedim mence bele olmalidir ama artada biler deye + da yazdim
+                //Energy += 10;
+                Meal_pr++;
+                total_Meal_pr++;
+                Age++;
+                Price += 20;
+                TotalPrice += 20;
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Ac deyil ayqa");
+            }
+        }
+
+        public override void Sleep()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} yorğun deyildana");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Sleeping");
+                Energy = 100;//day dededim yatanda tam yatarda ona giorem 100 eledim
+            }
+        }
+        public override void Play()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} Playing");
+                Energy -= 10;
+                Acliq -= 10;
+
+                if (Energy <= 0)
+                {
+                    Console.WriteLine($"{Nickname} need sleep");
+                    Sleep();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} yatmalıdır.");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+        }
+    }
+    public class Bird : PetShop
+    {
+        public Bird(string Nickname)
+        {
+            this.Nickname = Nickname;
+            Energy = 50;
+            Acliq = 50;
+            Age = 99;
+            Gender = "Male";
+            Price = 999;
+        }
+
+        public override void Eat()
+        {
+            if (Acliq <= 70)
+            {
+                Console.WriteLine($"{Nickname} is Eating");
+                Acliq = 100;
+                Energy -= 10;//yemek yeyende adamain yuxusu gelirde dedim mence bele olmalidir ama artada biler deye + da yazdim
+                //Energy += 10;
+                Meal_pr++;
+                total_Meal_pr++;
+                Age++;
+                Price += 20;
+                TotalPrice += 20;
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Ac deyil ayqa");
+            }
+        }
+        public override void Sleep()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} yorğun deyildana");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} Sleeping");
+                Energy = 100;//day dededim yatanda tam yatarda ona giorem 100 eledim
+            }
+        }
+        public override void Play()
+        {
+            if (Energy >= 50)
+            {
+                Console.WriteLine($"{Nickname} Playing");
+                Energy -= 10;
+                Acliq -= 10;
+
+                if (Energy <= 0)
+                {
+                    Console.WriteLine($"{Nickname} need sleep");
+                    Sleep();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{Nickname} yatmalıdır.");
+                Console.WriteLine($"Energy: {Energy}");
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pet shop = new Pet();
+            PetShop pet = shop.Register();
+            pet.Eat();
+            pet.Play();
+            pet.Sleep();
+            Console.WriteLine();
+            Console.WriteLine($"Total Meal: {PetShop.total_Meal_pr}");
+            Console.WriteLine($"Total Price: {PetShop.TotalPrice}");
+        }
+    }
+}
