@@ -1,0 +1,168 @@
+using System;
+using System.Collections.Generic;
+namespace UserNamespace
+{
+    public class User
+    {
+        public Guid Id;
+        public string Name;
+        public string Surname;
+        public int Age;
+        public string Email;
+        public string Password;
+    }
+}
+namespace PostNamespace
+{
+    public class Post
+    {
+        public Guid Id;
+        public string Content;
+        public DateTime CreationDateTime;
+        public int LikeCount;
+        public int ViewCount;
+    }
+}
+namespace AdminNamespace
+{
+    using UserNamespace;
+    using PostNamespace;
+public class Nati
+    {
+        public Guid Id;
+        public string Text;
+        public DateTime DateTime;
+        public User FromUser;
+    }
+    public class Admin
+    {
+        public Guid Id;
+        public string Username;
+        public string Email;
+        public string Password;
+        public List<Post> Posts = new List<Post>();
+        public List<Nati> Natis = new List<Nati>();
+    }
+}
+namespace MainNamespace
+{
+    using UserNamespace;
+    using PostNamespace;
+    using AdminNamespace;
+class Program
+    {
+        static void Main()
+        {
+            Admin admin = new Admin();
+            admin.Id = Guid.NewGuid();
+            admin.Username = "Yusuf";
+            admin.Email = "yusuf@gmail.com";
+            admin.Password = "Yusuf1234";
+            Post p1 = new Post();
+            p1.Id = Guid.NewGuid();
+            p1.Content = "First post";
+            p1.CreationDateTime = DateTime.Now;
+            Post p2 = new Post();
+            p2.Id = Guid.NewGuid();
+            p2.Content = "Seconde post";
+            p2.CreationDateTime = DateTime.Now;
+            admin.Posts.Add(p1);
+            admin.Posts.Add(p2);
+            User user = new User();
+            user.Id = Guid.NewGuid();
+            user.Name = "Kamran";
+            user.Surname = "Karimzade";
+            user.Age = 18;
+            user.Email = "KamranKarimzade@gmail.com";
+            user.Password = "Kamran1234";
+            Console.WriteLine("1.Admin\n2.User\nSecim: ");
+            int secim = int.Parse(Console.ReadLine());
+            if (secim == 1)
+            {
+                Console.Write("Username: ");
+                string username = Console.ReadLine();
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
+                Console.Write("Password: ");
+                string password = Console.ReadLine();
+                if (username == admin.Username && email == admin.Email && password == admin.Password)
+                {
+                    Console.WriteLine("Welcome Admin Bro ");
+                    Console.WriteLine("\nPostlar: ");
+                    foreach (var post in admin.Posts)
+                    {
+                        Console.WriteLine("ID: " + post.Id);
+                        Console.WriteLine("Content: " + post.Content);
+                        Console.WriteLine("Views: " + post.ViewCount);
+                        Console.WriteLine("Likes: " + post.LikeCount);
+                    }
+                    Console.WriteLine("\nNaficationlar: ");
+                    foreach (var n in admin.Natis)
+                    {
+                        Console.WriteLine(n.Text);
+                        Console.WriteLine(n.DateTime);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error: Login Error ( Username ve yaxud Pasword yanlis daxil edildi !!!");
+                }
+            }
+            else if (secim == 2)
+            {
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
+                Console.Write("Password: ");
+                string password = Console.ReadLine();
+                if (email == user.Email && password == user.Password)
+                {
+                    Console.WriteLine("\nPostlar: ");
+                    foreach (var post in admin.Posts)
+                    {
+                        Console.WriteLine("ID: " + post.Id);
+                        Console.WriteLine("Content: " + post.Content);
+                    }
+                    Console.WriteLine("\n1.Weiw\n2.Like\nSecim: ");
+                    int choise_2 = int.Parse(Console.ReadLine());
+                    Console.Write("Post ID: ");
+                    Guid id = Guid.Parse(Console.ReadLine());
+                    foreach (var post in admin.Posts)
+                    {
+                        if (post.Id == id)
+                        {
+                            Nati Nati = new Nati();
+                            Nati.Id = Guid.NewGuid();
+                            Nati.DateTime = DateTime.Now;
+                            Nati.FromUser = user;
+                            if (choise_2 == 1)
+                            {
+                                post.ViewCount++;
+                                Nati.Text = user.Name + " Posta baxildi";
+                                admin.Natis.Add(Nati);
+                                Console.WriteLine(post.Content);
+                            }
+                            else if (choise_2 == 2)
+                            {
+                                post.LikeCount++;
+                                Nati.Text = user.Name + " Posta Like atdi ";
+                                admin.Natis.Add(Nati);
+                                Console.WriteLine("Add Like .");
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error: Login error beooooooo");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Erro: Yanlis secim!!!1");
+            }
+        }
+    }
+
+
+}
