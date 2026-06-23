@@ -1,1 +1,239 @@
 
+using System;
+using System.Collections.Generic;
+public  class Person
+{
+    private Guid ID;
+    private string Name;
+    private string SurName;
+    private int Age;
+    public Person(Guid ID, string Name, string SurName, int Age)
+    {
+        this.ID=ID;
+        this.Name=Name;
+        this.SurName=SurName;
+        this.Age=Age;
+    }
+    public virtual void ShowInfo()
+    {
+        Console.WriteLine($"Name: {Name}\nSurname: {SurName}\nAge: {Age}\nID: {ID}");
+    }
+}
+public enum Position 
+{
+    CEO,
+    Worker,
+    Manager
+}
+public abstract class Employee : Person
+{
+    public Employee(Guid ID, string Name, string SurName, int Age) : base(ID, Name, SurName, Age){}
+    protected double Salary;
+    protected Position position;
+    public override void ShowInfo()
+    {
+        base.ShowInfo();
+        Console.WriteLine($"\nPositon: {position}\nSalary: {Salary}");
+    }
+}
+public class CEO : Employee
+{
+    public double Percent = 18;
+    public CEO(Guid ID, string Name, string SurName, int Age) : base(ID, Name, SurName, Age)
+    {
+        position = Position.CEO;
+    }
+    public void Control()
+    {
+        Console.WriteLine("CEO Control edir ayqa");
+    }
+    public void Organize()
+    {
+        Console.WriteLine("CEO Organize edir ayqa");
+    }
+    public void makeMeeting()
+    {
+        Console.WriteLine("CEO Meeting duzenledi .....");
+    }
+    public void decreasePercentage(double percent)
+    {
+        Percent-=percent;
+        Console.WriteLine($"Percent azaldildi\nNew Percent: {Percent}");
+    }
+}
+public class Manager : Employee
+{
+    public Manager(Guid ID, string Name, string SurName, int Age) : base(ID, Name, SurName, Age)
+    {
+        position = Position.Manager;
+    }
+    public void Organize()
+    {
+        Console.WriteLine("Manager organize edir ");
+    }
+    public double Total_Salary = 0;
+    public void Calculator_Salary( double salary ) 
+    {
+        Total_Salary += salary;
+        Console.WriteLine("Manager Total salary hesabati aparir....");
+        Console.WriteLine($"Bu gun ki gelir: {salary}");
+        Console.WriteLine($"Total Salary: {Total_Salary}");
+    }
+}
+public class Worker : Employee
+{
+    public Worker(Guid ID, string Name, string SurName, int Age) : base(ID, Name, SurName, Age)
+    {
+        position = Position.Worker;
+    }
+    public string start_time = " 12:00 ";
+    public string end_time = " 20:00 ";
+    List<string> Operating = new List<string>(){"Fayllari gonder","Systemi yoxla"};//day ne deyim yazziqa yerleri sildirim ? 
+    public void addOperation(string aopp)//ikisinide eyni functionda yazdim hem ekrana cixartiram hemdeki add eliyirem !
+    {
+        Console.WriteLine("Workerin etmeli olduqu isler: ");
+        foreach (string operation in Operating)
+        {
+            Console.WriteLine($" - {operation}");
+        }
+        Operating.Add(aopp);
+        Console.WriteLine("New operation added");
+    }
+}
+//-----------------------
+public class Operation
+{
+    public Guid ID;
+    public string Process_Name;
+    public DateTime DateTime;
+
+    public Operation(string processName)
+    {
+        ID = Guid.NewGuid();
+        Process_Name = processName;
+        DateTime = DateTime.Now;
+    }
+
+    public void ShowOperation()
+    {
+        Console.WriteLine($"Operation: {Process_Name}");
+        Console.WriteLine($"Date: {DateTime}");
+    }
+}
+
+public class Client : Person
+{
+    public string Live_Address;
+    public string Work_Address;
+    public double Salary;
+
+    public Client(Guid ID, string Name, string SurName, int Age,
+        string addres, string workAddress, double salary): base(ID, Name, SurName, Age)
+    {
+        Live_Address = addres;
+        Work_Address = workAddress;
+        Salary = salary;
+    }
+    public override void ShowInfo()
+    {
+        base.ShowInfo();
+        Console.WriteLine($"Home Address: {Live_Address}");
+        Console.WriteLine($"Work Address: {Work_Address}");
+        Console.WriteLine($"Salary: {Salary}");
+    }
+}
+public class Credit
+{
+    public Guid ID;
+    public Client Client;
+    public double Amount;
+    public double Percent;
+    public int Months;
+    public Credit(Client client, double amount, double percent, int months)
+    {
+        ID = Guid.NewGuid();
+        Client = client;
+        Amount = amount;
+        Percent = percent;
+        Months = months;
+    }
+    public double CalculatePercent()
+    {
+        return Amount * Percent / 100;
+    }
+    public double Payment()
+    {
+        return Amount + CalculatePercent();
+    }
+    public void ShowCredit()
+    {
+        Console.WriteLine($"Credit Amount: {Amount}");
+        Console.WriteLine($"Percent: {Percent}");
+        Console.WriteLine($"Months: {Months}");
+        Console.WriteLine($"Total Payment: {Payment()}");
+    }
+}
+public class Bank
+{
+    public string Name;
+    public double Budget;
+    public double Profit;
+    public CEO CEO;
+    public List<Worker> Workers = new List<Worker>();
+    public List<Manager> Managers = new List<Manager>();
+    public List<Client> Clients = new List<Client>();
+    public List<Credit> Credits = new List<Credit>();
+    public Bank(string name, double budget)
+    {
+        Name = name;
+        Budget = budget;
+    }
+    public double Calculate_Profit()
+    {
+        double total = 0;
+
+        foreach (Credit credit in Credits)
+        {
+            total += credit.CalculatePercent();
+        }
+        Profit = total;
+        return Profit;
+    }
+    public void ShowAllCredit()
+    {
+        foreach (Credit credit in Credits)
+        {
+            credit.ShowCredit();
+        }
+    }
+    public void ShowClientCredit(string fullname)
+    {
+        foreach (Credit credit in Credits)
+        {
+            Console.WriteLine("Client Credit:");
+            credit.ShowCredit();
+        }
+    }
+    public void PayCredit(Credit credit, double money)
+    {
+        credit.Amount -= money;
+
+        if (credit.Amount < 0)
+            credit.Amount = 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
