@@ -1,0 +1,62 @@
+public class DocumentProgram
+{
+    public void OpenDocument()
+    {
+        Console.WriteLine("Document Opened");
+    }
+    public virtual void EditDocument()
+    {
+        Console.WriteLine("Can Edit in Pro and Expert versions");
+    }
+    public virtual void SaveDocument()
+    {
+        Console.WriteLine("Can Save in Pro and Expert versions");
+    }
+}
+//----------------------------------------------------
+public class ProDocumentProgram : DocumentProgram
+{
+    public override void EditDocument()
+    {
+        Console.WriteLine("Document Edited");
+    }
+    public new virtual void SaveDocument()
+    {
+        Console.WriteLine("Document Saved in doc format, for pdf format buy Expert packet");
+    }
+}
+//----------------------------------------------------
+public class ExpertDocument : ProDocumentProgram
+{
+    public override void SaveDocument()
+    {
+        Console.WriteLine("Document Saved in pdf format");
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.Write("1.Basic\n2.Pro\n3.Expert\nSecim: ");
+        int secim = Convert.ToInt32(Console.ReadLine());
+        DocumentProgram docProgram;
+        switch (secim)
+        {
+            case 1:
+                docProgram = new DocumentProgram();
+                break;
+            case 2:
+                docProgram = new ProDocumentProgram();
+                break;
+            case 3:
+                docProgram = new ExpertDocument();
+                break;
+            default:
+                Console.WriteLine("Error: Sadece  verilen secimleri sece bilerseniz !!!");
+                return;
+        }
+        docProgram.OpenDocument();
+        docProgram.EditDocument();
+        docProgram.SaveDocument();
+    }
+}
