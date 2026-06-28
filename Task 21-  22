@@ -115,27 +115,32 @@ class Debtor
         //19)Tesevvur edek ki,butun borclari olanlar bugunden etibaren her ay 500 azn pul odeyecekler.Oz ad gunune kimi borcun oduyub qurtara bilenlerin siyahisin cixartmaq
 
         //20)Adindaki ve familyasindaki herflerden "smile" sozunu yaza bileceyimiz borclularin siyahisini cixartmaq
+
+
+
+
+        //----------------------------------------------
+        //var check = debtors.Where(x => x.Email.EndsWith("@rhyta.com") || x.Email.EndsWith("@dayrep.com"));
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item);
+        //}
         //=-------------------------------------------------
         //var check = debtors.Where(x =>
         //{
-        //int age = DateTime.Now.Year - x.BirthDay.Year;
-        //if (age >= 26 && age <= 36)
-        //{
-
+        //    int age1 = DateTime.Now.Year - x.BirthDay.Year;
+        //    return age1 >= 26 && age1 <= 36;
         //});
         //foreach (var item in check)
         //{
         //    Console.WriteLine(item);
         //}
-
         //--------------------------------------------
-
         //var check = debtors.Where(x => x.Debt <= 5000);
-        //foreach (var item in check) 
+        //foreach (var item in check)
         //{
         //    Console.WriteLine(item);
         //}
-
         //--------------------------------------------
         //var check = debtors.Where(x => x.FullName.Length >= 18 && x.Phone.Count(n => n == '7') >= 2);
         //foreach (var item in check)
@@ -143,15 +148,55 @@ class Debtor
         //    Console.WriteLine(item);
         //}
         //--------------------------------------------
-        var check = debtors.Where(x => x.BirthDay.Year == 12 || x.BirthDay.Year == 1 || x.BirthDay.Year == 2);
-        foreach (var item in check)
-        {
-            Console.WriteLine(item.Debt);
-        }
+        //var check = debtors.Where(x => x.BirthDay.Month == 12 || x.BirthDay.Month == 1 || x.BirthDay.Month == 2);
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item.Debt);
+        //}
         //--------------------------------------------
-
-
-
+        //var check = debtors.Where(x => x.BirthDay.Year <= 1945);
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item);
+        //}
+        //-------------------------------------------------------
+        //var check = debtors.GroupBy(x => x.BirthDay.Year).OrderByDescending(x => x.Count()).First();
+        //Console.WriteLine(check.Key);
+        //-------------------------------------------------------------
+        //var check = debtors.OrderByDescending(x => x.Debt).Take(5);
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item);
+        //}
+        //-------------------------------------------
+        //int total = debtors.Sum(x => x.Debt);
+        //Console.WriteLine(total);
+        //----------------------------------------------
+        //var check = debtors.Where(x =>
+        //{
+        //    DateTime today = DateTime.Today;
+        //    DateTime birthday = new DateTime(today.Year, x.BirthDay.Month, x.BirthDay.Day);
+        //    if (birthday < today)
+        //    { 
+        //        birthday = birthday.AddYears(1);
+        //    }
+        //    int months = (birthday.Year - today.Year) * 12 + birthday.Month - today.Month;
+        //    return months * 500 >= x.Debt;
+        //});
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item);
+        //}
+        //-----------------------------
+        //var check = debtors.Where(x =>
+        //{
+        //    string text = x.FullName.ToLower();
+        //    return text.Contains('s') && text.Contains('m') && text.Contains('i') && text.Contains('l') && text.Contains('e');
+        //});
+        //foreach (var item in check)
+        //{
+        //    Console.WriteLine(item);
+        //}
 
 
     }
